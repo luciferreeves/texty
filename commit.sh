@@ -15,6 +15,8 @@
 # This script should return 0 if the commit should proceed or 1 if
 # the commit should be aborted.
 
+set -e
+
 # Get the current branch name
 branch=$(git rev-parse --abbrev-ref HEAD)
 
