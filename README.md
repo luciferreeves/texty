@@ -96,19 +96,20 @@ This repository uses a custom commit script `commit.sh` to commit changes. This 
 
 > **Note**: If a non-existent branch is specified, the script will ask if you want to create the branch, and if you do, it will create the branch and push it to the remote repository; otherwise, it will abort.
 
-Before running the script, make sure you have `git` installed and configured and that you have the correct permissions to push to the remote repository. Then you can start by making the script executable first:
-
-```bash
-chmod +x commit.sh
-```
-
 Then you can run the script:
 
 ```bash
 commit README.md -m "Update README.md" -t "docs" -b "main"
 ```
 
-If you haven't configured aliases at this point, you can achieve the same by running:
+Before running the command, make sure you have `git` installed and configured and that you have the correct permissions to push to the remote repository. 
+If you haven't configured aliases or run `setup.py` at this point, you can achieve the same by making the script executable first:
+
+```bash
+chmod +x commit.sh
+```
+
+Commit the changes:
 
 ```bash
 ./commit.sh README.md -m "Update README.md" -t "docs" -b "main"
