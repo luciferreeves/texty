@@ -86,15 +86,11 @@ This repository uses a custom commit script `commit.sh` to commit changes. This 
     -t              type: change type (optional)
     -b              branch: branch name (optional)
     -h, --help      display help message
-> **Note**: The `files` argument is required. If you do not specify any files, the script will produce an error. You can add multiple files by separating them with a space. If you want to commit all files, use `"."` as the argument.
-
-> **Note**: The `-m` flag is required. If you do not specify a message, the script will prompt you for one.
-
-> **Note**: The `-t` and `-b` flags are optional. If you do not specify a branch, the script will use the current branch. If you do not specify a type, the script will use the default type `feat`.
-
-> **Note**: Valid change types are `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`, and `revert`. If you specify an invalid type, the script will ask if you want to use the default type `feat`.
-
-> **Note**: If a non-existent branch is specified, the script will ask if you want to create the branch, and if you do, it will create the branch and push it to the remote repository; otherwise, it will abort.
+- The `files` argument is required. If you do not specify any files, the script will produce an error. You can add multiple files by separating them with a space. If you want to commit all files, use `"."` as the argument.
+- The `-m` flag is required. If you do not specify a message, the script will prompt you for one.
+- The `-t` and `-b` flags are optional. If you do not specify a branch, the script will use the current branch. If you do not specify a type, the script will use the default type `feat`.
+- Valid change types are `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`, and `revert`. If you specify an invalid type, the script will ask if you want to use the default type `feat`.
+- If a non-existent branch is specified, the script will ask if you want to create the branch, and if you do, it will create the branch and push it to the remote repository; otherwise, it will abort.
 
 Then you can run the  command:
 
