@@ -40,12 +40,8 @@ commands() {
     # Example:
     # echo "Hello World"
 
-    # Generate Requirements.txt, delete the old one if it exists
-    if [ -f requirements.txt ]
-    then
-        rm requirements.txt
-    fi
-    pip3 freeze > requirements.txt
+    # Generate Requirements.txt
+    pipreqs --force .
 }
 
 # Default values for optional arguments
@@ -136,13 +132,13 @@ fi
 if [[ $type =~ ^(feat|fix|docs|style|refactor|perf|test|chore|revert)$ ]]
 then
     # If type is valid, run commit function
-    commit $files "$message" $type $branch
+    commit "$files" "$message" $type $branch
 else
     # If type is invalid, prompt the to use the default type
     read -p "Invalid type. Do you want to use the default type "feat"? (y/n): " useDefaultType
     if [[ $useDefaultType =~ ^[Yy]$ ]] || [[ $useDefaultType =~ ^[Yy][Ee][Ss]$ ]]
     then
-        commit $files "$message" $type $branch
+        commit "$files" "$message" $type $branch
     else
         echo "Commit aborted"
         exit 1
