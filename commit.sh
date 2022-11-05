@@ -40,6 +40,12 @@ commands() {
     # Example:
     # echo "Hello World"
 
+    # Sort imports
+    python3 -m isort .
+
+    # Format code
+    python3 -m black .
+
     # Generate Requirements.txt
     pipreqs --force .
 
