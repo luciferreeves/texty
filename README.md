@@ -1,9 +1,41 @@
 # Texty
 Text Editor
 
-## Committing Changes
 
-This repository uses a custom commit script `commit.sh` to commit changes. This script will automatically add all files in the repository, commit them, and push them to the remote repository.
+## Contributing Guidelines
+
+The project is open to contributions. If you want to contribute, please follow the guidelines below:
+
+### Requirements
+
+Before you start contributing, there are a few things you need to have installed and configured on your machine:
+
+- [Git](https://git-scm.com/downloads)
+- [Python 3.6+](https://www.python.org/downloads/)
+
+### Making Changes
+
+You should start by [forking this repository](https://github.com/luciferreeves/texty/fork) and then cloning it to your local machine. If you need help with this, you can follow [this guide](https://help.github.com/articles/fork-a-repo/). Once you have cloned the repository, you can start making changes.
+
+**Note**: You must be working in a virtual environment. If you don't know what that is, you can read more about it [here](https://docs.python.org/3/tutorial/venv.html). To create a virtual environment, run the following command:
+
+    python -m venv env
+
+This will create a virtual environment named `env`. This environment will be used to install the project's dependencies and will be ignored by Git. To activate the environment, run the following command:
+
+    source env/bin/activate
+
+This will activate the virtual environment. You can now install the project's dependencies by running the following command:
+    
+    pip install -r requirements.txt
+
+This will install all the dependencies required to run the project. You can now start making changes.
+
+### Committing Changes
+
+This repository uses a custom commit script `commit.sh` to commit changes. This script will automatically add all files in the repository, commit them, and push them to the remote repository. You should use this script instead of using the any of the git commands directly.
+
+> **Note**: This script immediately pushes the changes to the remote repository. If you don't want to push the changes yet, you can use regular git commands, but you should still use the script to commit the final changes.
 
     Usage: ./commit.sh files -m message -t type -b branch
 
@@ -13,7 +45,7 @@ This repository uses a custom commit script `commit.sh` to commit changes. This 
     -b              branch: branch name (optional)
     -h, --help      display help message
 
-**Note**: The `files` argument is required. If you do not specify any files, the script will produce an error. If you want to commit all files, use `"."` as the argument.
+**Note**: The `files` argument is required. If you do not specify any files, the script will produce an error. You can add multiple files by separating them with a space. If you want to commit all files, use `"."` as the argument.
 
 **Note**: The `-m` flag is required. If you do not specify a message, the script will prompt you for one.
 
@@ -35,7 +67,7 @@ Then you can run the script:
 ./commit.sh README.md -m "Update README.md" -t "docs" -b "main"
 ```
 
-### Configuring `commit.sh`
+#### Configuring `commit.sh`
 
 You can open and edit the `commit.sh` script directly to add your own commands. These commands will be executed before the commit is made. For example, you can add a command to run a linter before committing.
 
@@ -51,3 +83,12 @@ In order to configure the script, you should add your commands inside the `comma
         # Example:
         # echo "Hello World"
     }
+
+### Submitting Changes
+
+Once you have made your changes, you can submit them by [creating a pull request](https://github.com/luciferreeves/texty/pulls). If you need help with this, you can follow [this guide](https://help.github.com/articles/creating-a-pull-request/) to learn how to create a pull request. Once you have created a pull request, it will be reviewed and merged if it is approved.
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
