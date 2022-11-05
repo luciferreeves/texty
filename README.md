@@ -107,9 +107,9 @@ This is a list of the current maintainers of this project. This list is automati
 The maintainers in the `maintainers.yml` file are listed in the following format:
     
     - name: <name of the maintainer>
-        github: <github username of the maintainer>
-        email: <email of the maintainer> (optional)
-        website: <website of the maintainer> (optional)
+      github: <github username of the maintainer>
+      email: <email of the maintainer> (optional)
+      website: <website of the maintainer> (optional)
 
 > **Note**: Please do not edit the `README.md` file directly. Instead, edit the `maintainers.yml` file and run the `commit.sh` script to generate the `README.md` file.
 
