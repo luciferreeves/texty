@@ -10,7 +10,7 @@ The project is open to contributions. All kinds of suggestions are welcome. I wa
 - Discussing the current state of the code (See [Discussions](https://github.com/luciferreeves/texty/discussions) Page)
 - Submitting a fix (See [Pull Requests](https://github.com/luciferreeves/texty/pulls) Page)
 - Proposing new features (See [Request a Feature](https://github.com/luciferreeves/texty/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=%5BFEATURE%5D) for requesting a feature)
-- Becoming a maintainer (See [Maintainers](
+- Becoming a maintainer (See [Maintainers](#maintainers))
 
 GitHub is being exclusively used to host code, to track issues and feature requests, as well as accept pull requests for this project. Following is a guideline for developing via GitHub:
 
@@ -107,10 +107,13 @@ This is a list of the current maintainers of this project. This list is automati
 The maintainers in the `maintainers.yml` file are listed in the following format:
     
     - name: <name of the maintainer>
-        github: <github username of the maintainer>
-        email: <email of the maintainer> (optional)
-        website: <website of the maintainer> (optional)
+      github: <github username of the maintainer>
+      email: <email of the maintainer> (optional)
+      website: <website of the maintainer> (optional)
 
 > **Note**: Please do not edit the `README.md` file directly. Instead, edit the `maintainers.yml` file and run the `commit.sh` script to generate the `README.md` file.
 
-<!-- maintainers -->- [Bobby](luciferreeves) - [https://thatcomputerscientist.com](https://thatcomputerscientist.com)![Bobby](https://github.com/luciferreeves.png?size=40) 
+<!-- maintainers -->
+- [Bobby](luciferreeves) - [https://thatcomputerscientist.com](https://thatcomputerscientist.com)
+
+![Bobby](https://github.com/luciferreeves.png?size=40) 
