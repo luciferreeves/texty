@@ -1,7 +1,7 @@
 # This file is a list of maintainers for the project. It is used by the
-# `maintainers` command in the `commit.sh` script to automatically add 
-# maintainers to the `README.md` file in the maintainers section, present
-# at the bottom of the file.
+# the `commit.sh` script to automatically add maintainers to the 
+# `README.md` file in the maintainers section, present at the bottom 
+# of the file.
 
 
 # The maintainers are listed in the following format:
@@ -9,7 +9,6 @@
 #   github: <github username of the maintainer>
 #   email: <email of the maintainer> (optional)
 #   website: <website of the maintainer> (optional)
-#   twitter: <twitter username of the maintainer> (optional)
 
 # The maintainers are listed in the order of their addition to the file. If
 # you ever added or modified any parts of this repository, please add your
