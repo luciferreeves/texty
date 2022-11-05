@@ -42,6 +42,9 @@ commands() {
 
     # Generate Requirements.txt
     pipreqs --force .
+
+    # Generate Maintainers List
+    python3 scripts/maintainers.py
 }
 
 # Default values for optional arguments

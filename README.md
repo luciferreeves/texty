@@ -6,11 +6,11 @@ Text Editor
 
 The project is open to contributions. All kinds of suggestions are welcome. I want to make contributing to this project as easy and transparent as possible, whether it's:
 
-- Reporting a bug (See [Issues](https://github.com/luciferreeves/texty/issues) Page)
-- Discussing the current state of the code
-- Submitting a fix
-- Proposing new features
-- Becoming a maintainer
+- Reporting a bug (Go to [File a Bug](https://github.com/luciferreeves/texty/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5BBUG%5D) for reporting a bug)
+- Discussing the current state of the code (See [Discussions](https://github.com/luciferreeves/texty/discussions) Page)
+- Submitting a fix (See [Pull Requests](https://github.com/luciferreeves/texty/pulls) Page)
+- Proposing new features (See [Request a Feature](https://github.com/luciferreeves/texty/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=%5BFEATURE%5D) for requesting a feature)
+- Becoming a maintainer (See [Maintainers](
 
 GitHub is being exclusively used to host code, to track issues and feature requests, as well as accept pull requests for this project. Following is a guideline for developing via GitHub:
 
@@ -100,3 +100,7 @@ Once you have made your changes, you can submit them by [creating a pull request
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Maintainers
+
+<!-- maintainers -->- [Bobby](luciferreeves) - [https://thatcomputerscientist.com](https://thatcomputerscientist.com)![Bobby](https://github.com/luciferreeves.png?size=40) 
