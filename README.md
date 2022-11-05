@@ -96,7 +96,7 @@ This repository uses a custom commit script `commit.sh` to commit changes. This 
 
 > **Note**: If a non-existent branch is specified, the script will ask if you want to create the branch, and if you do, it will create the branch and push it to the remote repository; otherwise, it will abort.
 
-Then you can run the script:
+Then you can run the  command:
 
 ```bash
 commit README.md -m "Update README.md" -t "docs" -b "main"
