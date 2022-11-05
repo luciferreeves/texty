@@ -30,7 +30,7 @@ Similarly, to get help for the `commit` command, run the following command:
 
     commit --help
 
-A virtual environment is created automatically when you run the `setup.py` script. If you ran the script successfully, you can skip the next step and go ahead and activate the virtual environment:
+A virtual environment is created automatically when you run the `setup.py` script. If you ran the script successfully, you should go ahead and activate the virtual environment:
     
     source .venv/bin/activate
 
@@ -147,4 +147,7 @@ The maintainers in the `maintainers.yml` file are listed in the following format
 
 > **Note**: Please do not edit the `README.md` file directly. Instead, edit the `maintainers.yml` file and run the `commit.sh` script to generate the `README.md` file.
 
-<!-- maintainers -->- [Bobby](luciferreeves) - [https://thatcomputerscientist.com](https://thatcomputerscientist.com)![Bobby](https://github.com/luciferreeves.png?size=40) 
+<!-- maintainers -->
+- [Bobby](luciferreeves) - [https://thatcomputerscientist.com](https://thatcomputerscientist.com)
+
+![Bobby](https://github.com/luciferreeves.png?size=40) 
