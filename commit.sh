@@ -57,13 +57,15 @@ commit() {
     then
         msg="$3: $2"
         # If the branch is the current branch, commit the files
-        git commit $1 -m "$msg"
+        git add $1
+        git commit -m "$msg"
         git push origin $branch
     else
         # If the branch is not the current branch, checkout the branch and commit the files
         git checkout $branch
         msg="$3: $2"
-        git commit $1 -m "$msg"
+        git add $1
+        git commit -m "$msg"
         git push origin $branch
     fi
 }
