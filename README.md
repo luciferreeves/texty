@@ -1,6 +1,13 @@
 # Texty
 Text Editor
 
+## Requirements
+
+Before you start using, building or contributing, there are a few things you need to have installed and configured on your machine:
+
+- [Git](https://git-scm.com/downloads)
+- [Python 3.6+](https://www.python.org/downloads/)
+
 ## Quick Start
 
 To get started immediately, you can run the `setup.py` script. This is a Python script that is used to do a lot of things. It can be thought of as a manager script for this project. It is used to install requirements, run the project, and more. To run the script, type the following command in your terminal:
@@ -40,13 +47,6 @@ The project is open to contributions. All kinds of suggestions are welcome. I wa
 - Becoming a maintainer (See [Maintainers](#maintainers))
 
 GitHub is being exclusively used to host code, to track issues and feature requests, as well as accept pull requests for this project. Following is a guideline for developing via GitHub:
-
-### Requirements
-
-Before you start contributing, there are a few things you need to have installed and configured on your machine:
-
-- [Git](https://git-scm.com/downloads)
-- [Python 3.6+](https://www.python.org/downloads/)
 
 ### Making Changes
 
