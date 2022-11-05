@@ -36,8 +36,11 @@ def main():
         image_url = "https://github.com/{}.png?size=40".format(maintainer['github'])
         maintainer_images += "![{}]({}) ".format(maintainer['name'], image_url)
 
-    # Replace "<!-- maintainers -->" in the README.md file
-    readme = readme.replace("<!-- maintainers -->", "<!-- maintainers -->\r" + maintainers_list + "\r" + maintainer_images)
+    # Remove everything below "<!-- maintainers -->" in the README.md file
+    readme = readme.split("<!-- maintainers -->")[0]
+
+    # Add the list of maintainers to the README.md file
+    readme += "<!-- maintainers -->\r" + maintainers_list + "\r" + maintainer_images
 
     # Save the README.md file
     with open('README.md', 'w') as f:
