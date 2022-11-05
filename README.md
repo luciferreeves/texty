@@ -11,7 +11,7 @@ This will run the script and allow you to configure aliases for the project usin
 
     source bin/configure
 
-> **Note:** You need to run the `source bin/configure` command every time you open a new terminal window.
+> **Note**: You need to run the `source bin/configure` command every time you open a new terminal window.
 
 After running the above command, you can run setup script by running the `setup` command and the commit script by running the `commit` command. For more infomation on the commit script, see [Committing Changes](#committing-changes) section below.
 
