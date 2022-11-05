@@ -1,6 +1,33 @@
 # Texty
 Text Editor
 
+## Quick Start
+
+To get started immediately, you can run the `setup.py` script. This is a Python script that is used to do a lot of things. It can be thought of as a manager script for this project. It is used to install requirements, run the project, and more. To run the script, type the following command in your terminal:
+
+    python3 setup.py start
+
+This will run the script and allow you to configure aliases for the project using the file `bin/configure`. Once the script runs successfully, you can run the project by running the following command in your terminal to configure aliases for the project:
+
+    source bin/configure
+
+> **Note:** You need to run the `source bin/configure` command every time you open a new terminal window.
+
+After running the above command, you can run setup script by running the `setup` command and the commit script by running the `commit` command. For more infomation on the commit script, see [Committing Changes](#committing-changes) section below.
+
+If you need further help, you can pair `-h` or `--help` option with any of the commands to get help for that command. For example, to get help for the `setup` command, run the following command:
+
+    setup -h
+
+Similarly, to get help for the `commit` command, run the following command:
+
+    commit --help
+
+A virtual environment is created automatically when you run the `setup.py` script. If you ran the script successfully, you can skip the next step and go ahead and activate the virtual environment:
+    
+    source .venv/bin/activate
+
+At this point, you are ready to start contributing to the project by making changes to the code and submitting pull requests.
 
 ## Contributing Guidelines
 
@@ -23,6 +50,8 @@ Before you start contributing, there are a few things you need to have installed
 
 ### Making Changes
 
+> You can skip this step if you ran the `setup.py` script successfully.
+
 You should start by [forking this repository](https://github.com/luciferreeves/texty/fork) and then cloning it to your local machine. If you need help with this, you can follow [this guide](https://help.github.com/articles/fork-a-repo/). Once you have cloned the repository, you can start making changes.
 
 > **Note**: You must be working in a virtual environment. If you don't know what that is, you can read more about it [here](https://docs.python.org/3/tutorial/venv.html). To create a virtual environment, run the following command:
@@ -31,7 +60,7 @@ You should start by [forking this repository](https://github.com/luciferreeves/t
 
 This will create a virtual environment named `env`. This environment will be used to install the project's dependencies and will be ignored by Git. To activate the environment, run the following command:
 
-    source env/bin/activate
+    source .venv/bin/activate
 
 This will activate the virtual environment. You can now install the project's dependencies by running the following command:
     

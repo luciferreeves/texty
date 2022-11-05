@@ -3,12 +3,31 @@
 # run sorter, linter, start and build the project and more. It will be a
 # constantly evolving script as the project evolves.
 
+import importlib.util
 import logging as logger
 import os
 import subprocess
 import sys
 
 logger.basicConfig(stream=sys.stdout, level=logger.DEBUG)
+
+
+def install_pip(package_name):
+    # check if package is installed
+    if importlib.util.find_spec(package_name) is None:
+        # install package
+        logger.info(f"Installing {package_name}...")
+        subprocess.check_call(
+            [sys.executable, "-m", "pip", "-q", "install", package_name]
+        )
+
+
+DEV_PACKAGES = ["black", "isort", "click"]
+for package in DEV_PACKAGES:
+    install_pip(package)
+
+import click
+import inquirer
 
 
 class Setup:
@@ -22,21 +41,11 @@ class Setup:
         if not os.path.exists(".venv"):
             self.shell_run("python3 -m venv .venv")
             logger.info("Virtual environment created.")
-        self.shell_run("source .venv/bin/activate")
-        logger.info("Virtual environment activated.")
         logger.info("Installing requirements...")
         self.shell_run(self.QUIET_INSTALL)
-        self.install_pip("black")
-        self.install_pip("isort")
         self.git()
 
-    def install_pip(self, package_name):
-        logger.info(f"Installing {package_name}...")
-        self.shell_run(f"pip install -q {package_name}")
-
     def git(self):
-        import inquirer
-
         username = self.shell_run("git config --global user.name")
         if username == "":
             questions = [
@@ -81,8 +90,8 @@ alias commit="./commit.sh"
 alias setup="python3 setup.py"
 echo "Added aliases for commit and setup."
 echo ""
-echo "Run 'setup' to start the setup again."
-echo "Run 'commit' to commit changes. Run commit -h for help."
+echo "Run 'setup' to start the setup again. Run 'setup -h' for more options."
+echo "Run 'commit' to commit changes. Run 'commit -h' for help."
 """.format(
             os.environ["SHELL"]
         )
@@ -97,10 +106,28 @@ You may want to configure aliases for commit and setup scripts.
 To do so, run the configurator binary:
 
     source bin/configure
+
+You may also want to activate the virtual environment, if you haven't already:
+
+    source .venv/bin/activate
 """
         )
 
 
+CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
+
+
+@click.group(context_settings=CONTEXT_SETTINGS)
+def cli():
+    pass
+
+
+@click.command(help="Start the setup.")
+def start():
+    Setup().start()
+
+
+cli.add_command(start)
+
 if __name__ == "__main__":
-    setup = Setup()
-    setup.start()
+    cli()
