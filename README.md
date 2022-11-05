@@ -66,6 +66,11 @@ This will activate the virtual environment. You can now install the project's de
     
     python3 setup.py install
 
+To configure aliases at this point, run the following command:
+
+    python3 setup.py configure
+    source bin/configure
+
 This will install all the dependencies required to run the project. You can now start making changes.
 
 ### Committing Changes

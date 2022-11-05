@@ -80,10 +80,9 @@ class Setup:
             else:
                 logger.warn("Git author email not set.")
 
-        self.finish()
+        self.configure()
 
-    def finish(self):
-        logger.info("Setup finished.")
+    def configure(self):
         configure_path = "bin/configure"
         script = """#!{}
 alias commit="./commit.sh"
@@ -101,7 +100,8 @@ echo "Run 'commit' to commit changes. Run 'commit -h' for help."
         configure_st = os.stat(configure_path)
         os.chmod(configure_path, configure_st.st_mode | 0o111)
         print(
-            """
+            """Configuration script created.
+
 You may want to configure aliases for commit and setup scripts.
 To do so, run the configurator binary:
 
@@ -138,6 +138,14 @@ def install():
 
 
 cli.add_command(install)
+
+
+@click.command(help="Generate alias configuration script.")
+def configure():
+    Setup().configure()
+
+
+cli.add_command(configure)
 
 
 if __name__ == "__main__":
