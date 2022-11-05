@@ -105,6 +105,12 @@ chmod +x commit.sh
 Then you can run the script:
 
 ```bash
+commit README.md -m "Update README.md" -t "docs" -b "main"
+```
+
+If you haven't configured aliases at this point, you can achieve the same by running:
+
+```bash
 ./commit.sh README.md -m "Update README.md" -t "docs" -b "main"
 ```
 
