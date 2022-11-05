@@ -1,7 +1,0 @@
-#!/bin/zsh
-alias commit="./commit.sh"
-alias setup="python3 setup.py"
-echo "Added aliases for commit and setup."
-echo ""
-echo "Run 'setup' to start the setup again. Run 'setup -h' for more options."
-echo "Run 'commit' to commit changes. Run 'commit -h' for help."
