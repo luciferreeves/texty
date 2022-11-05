@@ -8,8 +8,6 @@ import os
 import subprocess
 import sys
 
-import inquirer
-
 logger.basicConfig(stream=sys.stdout, level=logger.DEBUG)
 
 
@@ -28,9 +26,17 @@ class Setup:
         logger.info("Virtual environment activated.")
         logger.info("Installing requirements...")
         self.shell_run(self.QUIET_INSTALL)
+        self.install_pip("black")
+        self.install_pip("isort")
         self.git()
 
+    def install_pip(self, package_name):
+        logger.info(f"Installing {package_name}...")
+        self.shell_run(f"pip install -q {package_name}")
+
     def git(self):
+        import inquirer
+
         username = self.shell_run("git config --global user.name")
         if username == "":
             questions = [

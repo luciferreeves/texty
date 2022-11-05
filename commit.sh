@@ -15,8 +15,6 @@
 # This script should return 0 if the commit should proceed or 1 if
 # the commit should be aborted.
 
-!#/bin/sh
-
 set -e
 
 # Get the current branch name
@@ -35,7 +33,6 @@ helpFuntion() {
     exit $1
 }
 
-
 # User Defined Commands
 commands() {
     # Add commands here
@@ -46,10 +43,10 @@ commands() {
     python3 -m isort .
 
     # Format code
-    python3 black .
+    python3 -m black .
 
     # Generate Requirements.txt
-    pipreqs --force .
+    pipreqs ./ --ignore .venv
 
     # Generate Maintainers List
     python3 scripts/maintainers.py
@@ -63,6 +60,7 @@ branch=$(git rev-parse --abbrev-ref HEAD)
 commit() {
     # Run User Defined Commands
     commands
+    
     # Check if the branch is the current branch
     if [ "$branch" == "$(git rev-parse --abbrev-ref HEAD)" ]
     then
@@ -79,6 +77,9 @@ commit() {
         git commit -m "$msg"
         git push origin $branch
     fi
+
+    # exit with success
+    exit 0
 }
 
 # Check if the number of arguments is less than 2
