@@ -46,7 +46,7 @@ commands() {
     python3 -m isort .
 
     # Format code
-    python3 -m black .
+    python3 black .
 
     # Generate Requirements.txt
     pipreqs --force .
