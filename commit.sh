@@ -57,16 +57,16 @@ commit() {
     # Check if the branch is the current branch
     if [ "$branch" == "$(git rev-parse --abbrev-ref HEAD)" ]
     then
+        msg="$3: $2"
         # If the branch is the current branch, commit the files
-        git commit $1 -m "$2"
-        echo $1
-        echo $2
-        # git push origin $branch
+        git commit $1 -m "$msg"
+        git push origin $branch
     else
         # If the branch is not the current branch, checkout the branch and commit the files
-        git checkout $3
-        git commit $1 -m "$2"
-        git push origin $3
+        git checkout $branch
+        msg="$3: $2"
+        git commit $1 -m "$msg"
+        git push origin $branch
     fi
 }
 
@@ -133,17 +133,14 @@ fi
 # Check if type is valid
 if [[ $type =~ ^(feat|fix|docs|style|refactor|perf|test|chore|revert)$ ]]
 then
-    # Add type to the message
-    message="$type: $message"
     # If type is valid, run commit function
-    commit $files $message $branch
+    commit $files "$message" $type $branch
 else
     # If type is invalid, prompt the to use the default type
     read -p "Invalid type. Do you want to use the default type "feat"? (y/n): " useDefaultType
     if [[ $useDefaultType =~ ^[Yy]$ ]] || [[ $useDefaultType =~ ^[Yy][Ee][Ss]$ ]]
     then
-        message="$type: $message"
-        commit $files $message $branch
+        commit $files "$message" $type $branch
     else
         echo "Commit aborted"
         exit 1
