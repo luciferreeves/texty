@@ -116,9 +116,6 @@ then
     read -p "Enter commit message: " message
 fi
 
-# Add type to the message
-message="$type: $message"
-
 # Check if the branch exists
 if [ -z "$(git branch --list $branch)" ]
 then
@@ -136,6 +133,8 @@ fi
 # Check if type is valid
 if [[ $type =~ ^(feat|fix|docs|style|refactor|perf|test|chore|revert)$ ]]
 then
+    # Add type to the message
+    message="$type: $message"
     # If type is valid, run commit function
     commit $files $message $branch
 else
@@ -143,6 +142,7 @@ else
     read -p "Invalid type. Do you want to use the default type "feat"? (y/n): " useDefaultType
     if [[ $useDefaultType =~ ^[Yy]$ ]] || [[ $useDefaultType =~ ^[Yy][Ee][Ss]$ ]]
     then
+        message="$type: $message"
         commit $files $message $branch
     else
         echo "Commit aborted"
