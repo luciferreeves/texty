@@ -59,10 +59,12 @@ commit() {
     then
         # If the branch is the current branch, commit the files
         git commit $1 -m "$2"
+        git push origin $branch
     else
         # If the branch is not the current branch, checkout the branch and commit the files
         git checkout $3
         git commit $1 -m "$2"
+        git push origin $3
     fi
 }
 
