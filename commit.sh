@@ -45,9 +45,6 @@ commands() {
     # Format code
     python3 -m black .
 
-    # Generate Requirements.txt
-    pipreqs ./ --ignore .venv
-
     # Generate Maintainers List
     python3 scripts/maintainers.py
 }

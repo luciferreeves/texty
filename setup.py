@@ -3,7 +3,6 @@
 # run sorter, linter, start and build the project and more. It will be a
 # constantly evolving script as the project evolves.
 
-import importlib.util
 import logging as logger
 import os
 import subprocess
@@ -14,25 +13,28 @@ logger.basicConfig(stream=sys.stdout, level=logger.DEBUG)
 
 def install_pip(package_name):
     # check if package is installed
-    if importlib.util.find_spec(package_name) is None:
-        # install package
+    check_command = "pip3 show " + package_name
+    try:
+        output = subprocess.check_output(check_command, shell=True)
+    except:
         logger.info(f"Installing {package_name}...")
         subprocess.check_call(
             [sys.executable, "-m", "pip", "-q", "install", package_name]
         )
 
 
-DEV_PACKAGES = ["black", "isort", "click"]
-for package in DEV_PACKAGES:
-    install_pip(package)
+PACKAGES = ["black", "isort", "click", "inquirer", "pyyaml"]
+
+
+def install_packages():
+    install_pip(" ".join(PACKAGES))
+
 
 import click
 import inquirer
 
 
 class Setup:
-    QUIET_INSTALL = "pip install -q -r requirements.txt"
-
     def shell_run(self, command):
         output = subprocess.check_output(command, shell=True)
         return output.decode("utf-8")
@@ -41,8 +43,6 @@ class Setup:
         if not os.path.exists(".venv"):
             self.shell_run("python3 -m venv .venv")
             logger.info("Virtual environment created.")
-        logger.info("Installing requirements...")
-        self.shell_run(self.QUIET_INSTALL)
         self.git()
 
     def git(self):
@@ -128,6 +128,17 @@ def start():
 
 
 cli.add_command(start)
+
+
+@click.command(help="Install requirements.")
+def install():
+    logger.info("Installing requirements...")
+    install_packages()
+    logger.info("Requirements installed.")
+
+
+cli.add_command(install)
+
 
 if __name__ == "__main__":
     cli()

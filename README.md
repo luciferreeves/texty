@@ -64,7 +64,7 @@ This will create a virtual environment named `env`. This environment will be use
 
 This will activate the virtual environment. You can now install the project's dependencies by running the following command:
     
-    pip install -r requirements.txt
+    python3 setup.py install
 
 This will install all the dependencies required to run the project. You can now start making changes.
 
