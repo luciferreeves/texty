@@ -26,3 +26,25 @@ class PreferenceManager:
     def reset(self):
         self.preferences = self.DEFAULT_PREFS
         self.save()
+
+
+class FileManager:
+    # keeps track of all open files and their contents
+    def __init__(self):
+        self.files = {}
+
+    def open_file(self, path):
+        # open a file and store it in the files dict
+        with open(path, "r") as f:
+            contents = f.read()
+        self.files[path] = contents
+
+    def save_file(self, path, contents):
+        # save a file
+        self.files[path] = contents
+        with open(path, "w") as f:
+            f.write(contents)
+
+    def close_file(self, path):
+        # close a file
+        del self.files[path]

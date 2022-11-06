@@ -14,7 +14,8 @@ KEYBINDS = {
     "Open File": f"meta-O",  # Open File
     "Save": f"meta-S",  # Save
     "Save As": f"meta-Shift-S",  # Save As
-    "Close": f"meta-W",  # Close
+    "Close Tab": f"meta-W",  # Close Tab
+    "Close": f"Alt-F4",  # Close
     "Quit": f"meta-Q",  # Quit
     "Undo": f"meta-Z",  # Undo
     "Redo": f"meta-Shift-Z",  # Redo
@@ -36,6 +37,7 @@ KEYBINDS = {
 
 MAC_KEYBINDS = {
     "Preferences": f"meta-,",  # Preferences
+    "Close Window": f"meta-Shift-W",  # Close Window
     "Hide Texty": f"meta-H",  # Hide Texty
     "Hide Others": f"meta-Shift-H",  # Hide Others
     "Show All": f"meta-Shift-A",  # Show All
