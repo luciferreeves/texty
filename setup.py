@@ -183,10 +183,12 @@ def sort():
 
 cli.add_command(sort)
 
+
 @click.command(help="Build the project.")
 def build():
     logger.info("Building the project...")
     os.system("pyinstaller --onefile --windowed --name Texty src/texty.py")
+
 
 cli.add_command(build)
 

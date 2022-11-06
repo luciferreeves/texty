@@ -8,7 +8,7 @@ import tkinter as tk
 
 import click
 
-from config.defaults import DEFAULT_PREFS, PREFERENCES_FILE
+from config.defaults import DEFAULT_PREFS, KEYBINDS, MAC_KEYBINDS, PREFERENCES_FILE
 from helpers.preferences import PreferenceManager
 
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
@@ -20,22 +20,27 @@ class Texty(tk.Tk):
         self.title("Texty")
         self.debug = debug
         self.prefs = PreferenceManager(DEFAULT_PREFS, PREFERENCES_FILE)
-
-        if self.debug:
-            logging.info("Running in debug mode. Preferences will not be saved.")
-            self.prefs.reset()
-        self.set_geometry()
         self.protocol("WM_DELETE_WINDOW", self.on_close)
         self.system = self.call("tk", "windowingsystem")
-        if self.system == "aqua":
-            self.option_add("*tearOff", False)
+        self.log("Running Texty on %s" % self.system)
+
+        self.option_add("*tearOff", False)
+        self.log("Tearoff disabled")
 
         # Bind Resize, Move, and Close
         self.bind("<Configure>", self.save_prefs)
         self.bind("<Destroy>", self.save_prefs)
+        self.log("Resize, Move, and Close bindings set to save preferences.")
+
+        # Set Geometry
+        self.set_geometry()
 
         # Create Menu Bar
         self.bind_menu()
+
+    def log(self, message):
+        if self.debug:
+            logging.info(message)
 
     def set_geometry(self):
         width = self.prefs.get("width")
@@ -51,6 +56,9 @@ class Texty(tk.Tk):
             else self.prefs.get("y_pos")
         )
         self.geometry(f"{width}x{height}+{x_pos}+{y_pos}")
+        self.log(
+            "Window geometry set to {}x{}+{}+{}".format(width, height, x_pos, y_pos)
+        )
 
     def save_prefs(self, event):
         if not self.debug:
@@ -61,7 +69,25 @@ class Texty(tk.Tk):
             self.prefs.save()
 
     def bind_menu(self):
-        pass
+        menubar = tk.Menu(self)
+
+        meta = "Command" if self.system == "aqua" else "Control"
+        keybinds = {k: v.replace("meta", meta) for k, v in KEYBINDS.items()}
+        mac_keybinds = {k: v.replace("meta", meta) for k, v in MAC_KEYBINDS.items()}
+        self.log("Keybinds set to %s" % keybinds)
+
+        if self.system == "aqua":
+            self.log("MacOS detected, Additional Keybinds set to %s" % mac_keybinds)
+            appmenu = tk.Menu(menubar, name="apple")
+            menubar.add_cascade(menu=appmenu)
+            appmenu.add_command(label="About Texty")
+            appmenu.add_separator()
+            self.createcommand("tk::mac::ShowPreferences", self.show_preferences)
+
+        self.config(menu=menubar)
+
+    def show_preferences(self):
+        print("Show Preferences")
 
     def on_close(self):
         if self.system == "aqua":
@@ -73,6 +99,8 @@ class Texty(tk.Tk):
 @click.command()
 @click.option("--debug", is_flag=True, help="Enable debug mode.")
 def main(debug):
+    if debug:
+        logging.info("Running in debug mode. Preferences will not be saved.")
     texty = Texty(debug=debug)
     texty.protocol("WM_DELETE_WINDOW", texty.on_close)
     texty.mainloop()
