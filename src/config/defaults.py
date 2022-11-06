@@ -42,3 +42,5 @@ MAC_KEYBINDS = {
     "Hide Others": f"meta-Shift-H",  # Hide Others
     "Show All": f"meta-Shift-A",  # Show All
 }
+
+ICONS_FOLDER = "icons"

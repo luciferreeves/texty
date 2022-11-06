@@ -26,15 +26,22 @@ class Texty(tk.Tk):
                 self.system, sys.platform
             )
         )
-
+        self.windows = 0
         self.withdraw()
         self.create_window()
 
     def create_window(self):
+        self.windows += 1
         window = TextyWindow(self)
         window.grab_set()
         window.focus_set()
         window.mainloop()
+
+    def destroy_window(self, window):
+        self.windows -= 1
+        window.destroy()
+        if self.windows == 0:
+            self.destroy()
 
     def get_window_geometry(self):
         width = self.prefs.get("width")

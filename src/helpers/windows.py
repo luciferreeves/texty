@@ -1,4 +1,7 @@
+import os
 import tkinter as tk
+
+from config.defaults import ICONS_FOLDER
 
 
 class TextyWindow(tk.Toplevel):
@@ -19,9 +22,26 @@ class TextyWindow(tk.Toplevel):
         self.parent.log("Resize, Move, and Close bindings set to save preferences.")
 
         self.config(menu=self.parent.get_menubar())
+        self.set_toolbar()
 
     def on_close(self):
-        if self.parent.system == "aqua":
-            self.destroy()
-        else:
-            self.quit()
+        self.parent.destroy_window(self)
+
+    def draw_layout(self):
+        self.parent.log("Drawing layout")
+
+    def set_toolbar(self):
+        self.parent.log("Drawing Toolbar")
+
+        toolbar = tk.Frame(self, bd=1, relief=tk.RAISED)
+
+        # add icon 16x16 buttons
+        def get_icon(name):
+            return tk.PhotoImage(file=os.path.join(ICONS_FOLDER, name))
+
+        new_icon = get_icon("new.png")
+        save_icon = get_icon("save.png")
+        cut_icon = get_icon("cut.png")
+        copy_icon = get_icon("copy.png")
+        paste_icon = get_icon("paste.png")
+        print_icon = get_icon("print.png")
