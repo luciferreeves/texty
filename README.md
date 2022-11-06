@@ -8,7 +8,7 @@ Text is a simple, easy to use, and fast text editor written in Python using the 
 
 <!-- Center Image -->
 <p align="center">
-  <img src="assets/current.png" alt="Current Screenshot" width="600" height="400">
+  <img src="assets/current.png" alt="Current Screenshot" width="600">
 </p>
 
 ## Requirements
