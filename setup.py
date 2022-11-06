@@ -55,6 +55,7 @@ class Setup:
         return output.decode("utf-8")
 
     def start(self):
+        install_packages()
         if not os.path.exists(".venv"):
             self.shell_run("python3 -m venv .venv")
             logger.info("Virtual environment created.")
