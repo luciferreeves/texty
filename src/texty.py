@@ -7,6 +7,7 @@ import sys
 import tkinter as tk
 
 import click
+import darkdetect
 
 from config.defaults import DEFAULT_PREFS, KEYBINDS, MAC_KEYBINDS, PREFERENCES_FILE
 from helpers.managers import FileManager, PreferenceManager
@@ -18,7 +19,7 @@ class Texty(tk.Tk):
         super().__init__()
         self.title("Texty")
         self.debug = debug
-        self.prefs = PreferenceManager(DEFAULT_PREFS, PREFERENCES_FILE)
+        self.prefs = PreferenceManager(DEFAULT_PREFS, PREFERENCES_FILE, debug=debug)
         self.fm = FileManager()
         self.system = self.call("tk", "windowingsystem")
         self.log(
@@ -26,6 +27,10 @@ class Texty(tk.Tk):
                 self.system, sys.platform
             )
         )
+        if self.prefs.get("theme") == "system":
+            self.theme = "dark" if darkdetect.isDark() else "light"
+        else:
+            self.theme = self.prefs.get("theme")
         self.windows = 0
         self.withdraw()
         self.create_window()

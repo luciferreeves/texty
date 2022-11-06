@@ -3,10 +3,11 @@ import os
 
 
 class PreferenceManager:
-    def __init__(self, default_prefs, preferences_file):
+    def __init__(self, default_prefs, preferences_file, debug=False):
         self.DEFAULT_PREFS, self.preferences = default_prefs, default_prefs
         self.preferences_file = preferences_file
-        self.load()
+        if not debug:
+            self.load()
 
     def load(self):
         if os.path.exists(self.preferences_file):

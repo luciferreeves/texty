@@ -5,3 +5,4 @@ inquirer
 pyyaml
 tk
 pyinstaller
+tkmacosx
