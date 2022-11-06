@@ -19,7 +19,7 @@ jobs:
     - name: Run Lint Check
       run: |
         python setup.py install
-        black --check .
+        python3 -m black --check .
     - name: Run Build
       run: |
         python setup.py build
