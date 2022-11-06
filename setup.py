@@ -39,15 +39,16 @@ def install_packages():
 def import_packages(packages):
     # import packages
     for package in packages:
-        globals()[package] = __import__(package)
+        try:
+            globals()[package] = __import__(package)
+        except ImportError:
+            logger.error(f"Package {package} not found. Installing...")
+            install_pip(package)
+            globals()[package] = __import__(package)
 
 
 packages = ["inquirer", "click"]
-try:
-    import_packages(packages)
-except:
-    install_packages()
-    import_packages(packages)
+import_packages(packages)
 
 
 class Setup:
