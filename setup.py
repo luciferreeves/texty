@@ -23,11 +23,16 @@ def install_pip(package_name):
         )
 
 
-PACKAGES = ["black", "isort", "click", "inquirer", "pyyaml"]
-
-
 def install_packages():
-    install_pip(" ".join(PACKAGES))
+    # read PKGLIST file
+    packages = []
+    with open("PKGLIST", "r") as f:
+        packages = f.readlines()
+    packages = [x.strip() for x in packages]
+    packages = " ".join(packages)
+
+    # install packages
+    install_pip(packages)
 
 
 import click

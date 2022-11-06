@@ -150,7 +150,4 @@ The maintainers in the `maintainers.yml` file are listed in the following format
 
 > **Note**: Please do not edit the `README.md` file directly. Instead, edit the `maintainers.yml` file and run the `commit.sh` script to generate the `README.md` file.
 
-<!-- maintainers -->
-- [Bobby](luciferreeves) - [https://thatcomputerscientist.com](https://thatcomputerscientist.com)
-
-![Bobby](https://github.com/luciferreeves.png?size=40) 
+<!-- maintainers -->- [Bobby](luciferreeves) - [https://thatcomputerscientist.com](https://thatcomputerscientist.com)![Bobby](https://github.com/luciferreeves.png?size=40) 
