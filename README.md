@@ -2,7 +2,14 @@
 
 [![Texty Build](https://github.com/luciferreeves/texty/actions/workflows/texty.yaml/badge.svg)](https://github.com/luciferreeves/texty/actions/workflows/texty.yaml)
 
-Text Editor
+Text is a simple, easy to use, and fast text editor written in Python using the Tkinter library. It is currently in development and is not yet ready for use.
+
+#### Current Screenshot
+
+<!-- Center Image -->
+<p align="center">
+  <img src="assets/current.png" alt="Current Screenshot" width="600" height="400">
+</p>
 
 ## Requirements
 
