@@ -2,67 +2,68 @@
 # text editor focused on simplicity and ease of use while being powerful and
 # extensible. It is a work in progress and is not yet ready for use.
 
-import json
-import os
+import logging
+import sys
 import tkinter as tk
 
-PREFERENCES_FILE = "texty.prefs"
-DEFAULT_PREFS = {
-    "width": 800,
-    "height": 600,
-    "x_pos": 0,
-    "y_pos": 0,
-}
+import click
+
+from config.defaults import DEFAULT_PREFS, PREFERENCES_FILE
+from helpers.preferences import PreferenceManager
+
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
 
 class Texty(tk.Tk):
-    def __init__(self):
+    def __init__(self, debug=False):
         super().__init__()
         self.title("Texty")
-        self.load_prefs()
-        self.geometry("{}x{}".format(self.prefs["width"], self.prefs["height"]))
-        self.minsize(400, 300)
+        self.debug = debug
+        self.prefs = PreferenceManager(DEFAULT_PREFS, PREFERENCES_FILE)
 
-        # set position
-        if self.prefs["x_pos"] > 0 and self.prefs["y_pos"] > 0:
-            self.geometry("+{}+{}".format(self.prefs["x_pos"], self.prefs["y_pos"]))
-        else:
-            self.geometry(
-                "+{}+{}".format(
-                    self.winfo_screenwidth() // 2 - self.prefs["width"] // 2,
-                    self.winfo_screenheight() // 2 - self.prefs["height"] // 2,
-                )
-            )
+        if self.debug:
+            logging.info("Running in debug mode. Preferences will not be saved.")
+            self.prefs.reset()
+        self.set_geometry()
 
-        self.draw_window()
+        # Bind Resize and Destroy events to save preferences
+        self.bind("<Configure>", self.save_prefs)
+        self.bind("<Destroy>", self.save_prefs)
 
-    def load_prefs(self):
-        self.prefs = DEFAULT_PREFS
-        if os.path.exists(PREFERENCES_FILE):
-            with open(PREFERENCES_FILE) as f:
-                self.prefs = json.load(f)
-        else:
-            with open(PREFERENCES_FILE, "w") as f:
-                json.dump(DEFAULT_PREFS, f)
+    def set_geometry(self):
+        width = self.prefs.get("width")
+        height = self.prefs.get("height")
+        x_pos = (
+            (self.winfo_screenwidth() // 2) - (width // 2)
+            if self.prefs.get("x_pos") == "center"
+            else self.prefs.get("x_pos")
+        )
+        y_pos = (
+            (self.winfo_screenheight() // 2) - (height // 2)
+            if self.prefs.get("y_pos") == "center"
+            else self.prefs.get("y_pos")
+        )
+        self.geometry(f"{width}x{height}+{x_pos}+{y_pos}")
 
-    def save_prefs(self):
-        with open(PREFERENCES_FILE, "w") as f:
-            json.dump(self.prefs, f)
-
-    def draw_window(self):
-        self.text = tk.Text(self)
-        self.text.pack(fill="both", expand=True)
+    def save_prefs(self, event):
+        if not self.debug:
+            self.prefs.set("width", self.winfo_width())
+            self.prefs.set("height", self.winfo_height())
+            self.prefs.set("x_pos", self.winfo_x())
+            self.prefs.set("y_pos", self.winfo_y())
+            self.prefs.save()
 
     def on_close(self):
-        self.prefs["width"] = self.winfo_width()
-        self.prefs["height"] = self.winfo_height()
-        self.prefs["x_pos"] = self.winfo_x()
-        self.prefs["y_pos"] = self.winfo_y()
-        self.save_prefs()
         self.destroy()
 
 
+@click.command()
+@click.option("--debug", is_flag=True, help="Enable debug mode.")
+def main(debug):
+    texty = Texty(debug=debug)
+    texty.protocol("WM_DELETE_WINDOW", texty.on_close)
+    texty.mainloop()
+
+
 if __name__ == "__main__":
-    app = Texty()
-    app.protocol("WM_DELETE_WINDOW", app.on_close)
-    app.mainloop()
+    main()

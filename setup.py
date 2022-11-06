@@ -154,9 +154,13 @@ cli.add_command(configure)
 
 
 @click.command(help="Run the project.")
-def run():
-    logger.info("Running project...")
-    os.system("python3 src/texty.py")
+@click.option("--debug", is_flag=True, help="Run in debug mode.")
+def run(debug):
+    if debug:
+        os.system("python3 src/texty.py --debug")
+    else:
+        logger.info("Running the project...")
+        os.system("python3 src/texty.py")
 
 
 cli.add_command(run)
