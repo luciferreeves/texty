@@ -25,10 +25,17 @@ class Texty(tk.Tk):
             logging.info("Running in debug mode. Preferences will not be saved.")
             self.prefs.reset()
         self.set_geometry()
+        self.protocol("WM_DELETE_WINDOW", self.on_close)
+        self.system = self.call("tk", "windowingsystem")
+        if self.system == "aqua":
+            self.option_add("*tearOff", False)
 
-        # Bind Resize and Destroy events to save preferences
+        # Bind Resize, Move, and Close
         self.bind("<Configure>", self.save_prefs)
         self.bind("<Destroy>", self.save_prefs)
+
+        # Create Menu Bar
+        self.bind_menu()
 
     def set_geometry(self):
         width = self.prefs.get("width")
@@ -53,8 +60,14 @@ class Texty(tk.Tk):
             self.prefs.set("y_pos", self.winfo_y())
             self.prefs.save()
 
+    def bind_menu(self):
+        pass
+
     def on_close(self):
-        self.destroy()
+        if self.system == "aqua":
+            self.destroy()
+        else:
+            self.quit()
 
 
 @click.command()

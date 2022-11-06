@@ -128,5 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Configure script
-bin
+# Texty Specific
+bin/configure
+texty.prefs
