@@ -1,7 +1,7 @@
 # This is a github action to build texty
 # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions
 
-name: Texty Build
+name: "Texty Build"
 on: [push, pull_request]
 jobs:
   build:

@@ -1,4 +1,7 @@
 # Texty
+
+[![Texty Build](https://github.com/luciferreeves/texty/actions/workflows/texty.yaml/badge.svg)](https://github.com/luciferreeves/texty/actions/workflows/texty.yaml)
+
 Text Editor
 
 ## Requirements
