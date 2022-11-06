@@ -29,10 +29,8 @@ def install_packages():
     with open("PKGLIST", "r") as f:
         packages = f.readlines()
     packages = [x.strip() for x in packages]
-    packages = " ".join(packages)
-
-    # install packages
-    install_pip(packages)
+    for package in packages:
+        install_pip(package)
 
 
 # Package Importer
@@ -66,15 +64,15 @@ class Setup:
         username = self.shell_run("git config --global user.name")
         if username == "":
             questions = [
-                inquirer.Confirm(
+                globals()["inquirer"].Confirm(
                     "set_username",
                     message="Do you want to set git author name?",
                     default=True,
                 ),
             ]
-            answers = inquirer.prompt(questions)
+            answers = globals()["inquirer"].prompt(questions)
             if answers["set_username"]:
-                username = inquirer.text(
+                username = globals()["inquirer"].text(
                     message="Enter git author name (not username): "
                 )
                 self.shell_run(f'git config --global user.name "{username}"')
@@ -84,15 +82,15 @@ class Setup:
         email = self.shell_run("git config --global user.email")
         if email == "":
             questions = [
-                inquirer.Confirm(
+                globals()["inquirer"].Confirm(
                     "set_email",
                     message="Do you want to set git author email?",
                     default=True,
                 ),
             ]
-            answers = inquirer.prompt(questions)
+            answers = globals()["inquirer"].prompt(questions)
             if answers["set_email"]:
-                email = inquirer.text(message="Enter git author email: ")
+                email = globals()["inquirer"].text(message="Enter git author email: ")
                 self.shell_run(f'git config --global user.email "{email}"')
             else:
                 logger.warn("Git author email not set.")
@@ -132,6 +130,8 @@ You may also want to activate the virtual environment, if you haven't already:
 
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
+
+click = globals()["click"]
 
 
 @click.group(context_settings=CONTEXT_SETTINGS)
