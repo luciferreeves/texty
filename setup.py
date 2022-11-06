@@ -35,8 +35,19 @@ def install_packages():
     install_pip(packages)
 
 
-import click
-import inquirer
+# Package Importer
+def import_packages(packages):
+    # import packages
+    for package in packages:
+        globals()[package] = __import__(package)
+
+
+packages = ["inquirer", "click"]
+try:
+    import_packages(packages)
+except:
+    install_packages()
+    import_packages(packages)
 
 
 class Setup:
