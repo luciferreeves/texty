@@ -153,5 +153,32 @@ def configure():
 cli.add_command(configure)
 
 
+@click.command(help="Run the project.")
+def run():
+    logger.info("Running project...")
+    os.system("python3 src/texty.py")
+
+
+cli.add_command(run)
+
+
+@click.command(help="Start Linter.")
+def lint():
+    logger.info("Starting Linter...")
+    os.system("python3 -m black .")
+
+
+cli.add_command(lint)
+
+
+@click.command(help="Start Sorter.")
+def sort():
+    logger.info("Starting Sorter...")
+    os.system("python3 -m isort .")
+
+
+cli.add_command(sort)
+
+
 if __name__ == "__main__":
     cli()
