@@ -4,3 +4,4 @@ click
 inquirer
 pyyaml
 tk
+pyinstaller
